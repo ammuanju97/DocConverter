@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Download Converted PDF</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
+
 <body>
     <div class="container">
         <h2 class="my-4">Your DOCX File Has Been Converted to PDF</h2>
-        
+
         <p>You can download your PDF file using the link below:</p>
-        
+
         <a href="{% url 'download_pdf' document.id %}" class="btn btn-success">Download PDF</a>
     </div>
 </body>
+
 </html>
