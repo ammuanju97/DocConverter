@@ -35,7 +35,7 @@ def register(request):
 
             )
             login(request,user)
-            return redirect('upload_convert')
+            return redirect('login')
     else:
         form = RegisterForm()
     return render(request, "registration/register.html", {'form': form})

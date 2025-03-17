@@ -24,9 +24,10 @@
         <h2>Welcome, {{ user.username }}</h2>
         <a href="{% url 'upload_convert' %}" class="btn btn-primary mt-3">Upload Another Document</a>
         <br><br>
-        <p>Your uploaded documents:</p>
+        
         
         {% if documents %}
+        <p>Your uploaded documents:</p>
             <table class="table table-bordered">
                 <thead>
                     <tr>
