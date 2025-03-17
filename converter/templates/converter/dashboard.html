@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+    <!-- 🔹 Navbar with Logout Button at the Top -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Dashboard</a>
+
+        <div class="ml-auto">
+            <form method="POST" action="{% url 'logout' %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2>Welcome, {{ user.username }}</h2>
+        <a href="{% url 'upload_convert' %}" class="btn btn-primary mt-3">Upload Another Document</a>
+        <br><br>
+        <p>Your uploaded documents:</p>
+        
+        {% if documents %}
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Document</th>
+                        <th>Uploaded On</th>
+                        <th>Download PDF</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for document in documents %}
+                        <tr>
+                            <td>{{ document.docx_file.name }}</td>
+                            <td>{{ document.uploaded_at }}</td>
+                            <td>
+                                {% if document.pdf_file %}
+                                    <a href="{% url 'download_pdf' document.id %}" class="btn btn-success">Download PDF</a>
+                                {% else %}
+                                    <span class="text-warning">Not yet converted</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>You haven't uploaded any documents yet.</p>
+        {% endif %}
+        
+        
+    </div>
+
+</body>
+</html>
